@@ -54,45 +54,52 @@ class _MainHomeState extends State<MainHome>
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(
-          'assets/dashboard.svg',
-          color: Colors.black,
-          height: 30.h,
-          width: 30.w,
-        ),
+        
+        iconSize: 30,
+        icon: Icon(Icons.dashboard),
+        // SvgPicture.asset(
+        //   'assets/dashboard.svg',
+        //   color: Colors.black,
+        //   height: 35.h,
+        //   width: 35.w,
+        //   fit:BoxFit.contain ,
+        // ),
         title: ("Dashboard"),
         activeColorPrimary: kprimarycolor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(
-          'assets/subscription.svg',
-          color: Colors.black,
-          height: 30.h,
-          width: 30.w,
-        ),
+        icon:Icon(Icons.subscriptions),
+        //  SvgPicture.asset(
+        //   'assets/subscription.svg',
+        //   color: Colors.black,
+        //   height: 30.h,
+        //   width: 30.w,
+        // ),
         title: ("Subscription"),
         activeColorPrimary: kprimarycolor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(
-          'assets/budget.svg',
-          color: Colors.black,
-          height: 35.h,
-          width: 35.w,
-        ),
+        icon: Icon(Icons.flag),
+        // SvgPicture.asset(
+        //   'assets/budget.svg',
+        //   color: Colors.black,
+        //   height: 35.h,
+        //   width: 35.w,
+        // ),
         title: ("Budget"),
         activeColorPrimary: kprimarycolor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(
-          'assets/user.svg',
-          color: Colors.black,
-          height: 30.h,
-          width: 30.w,
-        ),
+        icon:Icon(Icons.person),
+        //  SvgPicture.asset(
+        //   'assets/user.svg',
+        //   color: Colors.black,
+        //   height: 30.h,
+        //   width: 30.w,
+        // ),
         title: ("Account"),
         activeColorPrimary: kprimarycolor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
@@ -102,7 +109,7 @@ class _MainHomeState extends State<MainHome>
 
   List<Widget> screens = [
     HomePage(),
-    Subscription(),
+   const Subscription(),
     HomePage(),
     HomePage(),
   ];

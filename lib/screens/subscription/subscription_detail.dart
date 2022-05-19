@@ -1,4 +1,6 @@
 import 'package:billable/models/subscription.dart';
+import 'package:billable/screens/subscription/subscription_full_detail.dart';
+import 'package:billable/utils/constants/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -90,7 +92,7 @@ class SubscriptionDetail extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      ' Next Due Date : ${f.format(subscriptionBillModel.start.add(Duration(days: period(subscriptionBillModel.type) * (subscriptionBillModel.done+1)))).split(' ')[0]}',
+                      ' Next Due Date : ${f.format(subscriptionBillModel.start.add(Duration(days: period(subscriptionBillModel.type) * (subscriptionBillModel.done + 1)))).split(' ')[0]}',
                       style: GoogleFonts.spaceGrotesk(
                         textStyle: const TextStyle(
                             color: Colors.white,
@@ -131,71 +133,83 @@ class SubscriptionDetail extends StatelessWidget {
                         ),
                     itemCount: subscriptionBillModel.done,
                     itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  height: 51,
-                                  width: 51,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            subscriptionBillModel.img)),
+                      return InkWell(
+                        onTap: (() {
+                          changeScreen(
+                              context,
+                              SubscriptionFullDetail(
+                                index: index,
+                                subscriptionBillModelType: subscriptionBillModel,
+                              ));
+                        }),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 51,
+                                    width: 51,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              subscriptionBillModel.img)),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 5),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            subscriptionBillModel.name,
-                                            style: GoogleFonts.spaceGrotesk(
-                                              textStyle: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w500),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              subscriptionBillModel.name,
+                                              style: GoogleFonts.spaceGrotesk(
+                                                textStyle: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      '${f.format(subscriptionBillModel.start.add(Duration(days: period(subscriptionBillModel.type) * (index+1)))).split(' ')[0]}',
-                                      style: GoogleFonts.spaceGrotesk(
-                                        textStyle: const TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400),
+                                      Text(
+                                        '${f.format(subscriptionBillModel.start.add(Duration(days: period(subscriptionBillModel.type) * (index + 1)))).split(' ')[0]}',
+                                        style: GoogleFonts.spaceGrotesk(
+                                          textStyle: const TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Text(
-                              '-${subscriptionBillModel.amount/ subscriptionBillModel.interval}',
-                              style: GoogleFonts.spaceGrotesk(
-                                textStyle: const TextStyle(
-                                    color: Colors.red,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500),
+                                    ],
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
+                              Text(
+                                '-${(subscriptionBillModel.amount / subscriptionBillModel.interval).toStringAsFixed(2)}',
+                                style: GoogleFonts.spaceGrotesk(
+                                  textStyle: const TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     }),

@@ -113,7 +113,7 @@ class BVNpage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Step 3 of 5',
+                              'Step 4 of 5',
                               style: GoogleFonts.poppins(
                                 textStyle: const TextStyle(
                                     color: Color(0xff667085),

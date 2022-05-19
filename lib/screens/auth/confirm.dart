@@ -98,7 +98,7 @@ class _ConfirmState extends State<Confirm> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Step 3 of 5',
+                            'Step 2 of 5',
                             style: GoogleFonts.poppins(
                               textStyle: const TextStyle(
                                   color: Color(0xff667085),
@@ -132,7 +132,7 @@ class _ConfirmState extends State<Confirm> {
                               Positioned(
                                   child: Container(
                                 height: 5,
-                                width: MediaQuery.of(context).size.width * .6,
+                                width: MediaQuery.of(context).size.width * .4,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: kprimarycolor,
