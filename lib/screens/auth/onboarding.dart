@@ -158,40 +158,41 @@ class TheBoard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                   SizedBox(
+                  SizedBox(
                     height: 20.h,
                   ),
-                  if (current != 3)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                          width: 80.w,
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border:
-                                Border.all(color: Color(0xff667085), width: 1),
-                          ),
-                          child: Center(
-                            child: InkWell(
-                              onTap: () {
-                                changeScreen(context, SignUp());
-                              },
-                              child: Text('Skip',
-                                  style: GoogleFonts.spaceGrotesk(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff667085),
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14),
-                                  )),
-                            ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        width: 80.w,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              color: Color(0xff667085),
+                              width: current != 3 ? 1 : 0),
+                        ),
+                        child: Center(
+                          child: InkWell(
+                            onTap: () {
+                              changeScreen(context, SignUp());
+                            },
+                            child: Text(current != 3?'Skip':'',
+                                style: GoogleFonts.spaceGrotesk(
+                                  textStyle: const TextStyle(
+                                      color: Color(0xff667085),
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14),
+                                )),
                           ),
                         ),
-                      ],
-                    ),
-                   SizedBox(
+                      ),
+                    ],
+                  ),
+                  SizedBox(
                     height: 20.h,
                   ),
                   Container(
@@ -209,7 +210,7 @@ class TheBoard extends StatelessWidget {
                           color: kblue,
                         ),
                       )),
-                   SizedBox(
+                  SizedBox(
                     height: 10.h,
                   ),
                   Text(
@@ -223,7 +224,7 @@ class TheBoard extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                   SizedBox(
+                  SizedBox(
                     height: 20.h,
                   ),
                   Container(
@@ -233,7 +234,7 @@ class TheBoard extends StatelessWidget {
                           List.generate(4, (index) => buildDot(index, context)),
                     ),
                   ),
-                   SizedBox(
+                  SizedBox(
                     height: 50.h,
                   ),
                   InkWell(

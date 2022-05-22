@@ -1,8 +1,14 @@
+import 'package:billable/screens/subscription/full_subscription.dart';
+import 'package:billable/screens/subscription/subscrption.dart';
 import 'package:billable/utils/constants/color.dart';
+import 'package:billable/utils/constants/navigator.dart';
+import 'package:billable/utils/get_storage.dart';
+import 'package:billable/widgets/card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -13,60 +19,125 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int tab = 0;
+  final Subscription subs = Subscription();
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    final auth = Provider.of<UserToken>(context);
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             Container(
-              color: Color(0xff0C0A40),
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
                 children: [
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  Text(
-                    'Dashboard',
-                    style: GoogleFonts.poppins(
-                      textStyle:  TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w500),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Hi, ${auth.box.read('name').toString().split(' ')[0]}',
+                          style: GoogleFonts.spaceGrotesk(
+                            textStyle: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                        Container(
+                          height: 50,
+                          width: 50,
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border:
+                                Border.all(color: Color(0xffBACFFF), width: 5),
+                          ),
+                          child: Center(
+                            child:  Icon(
+                                  Icons.notifications_on_outlined,
+                                  size: 20,
+                                ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.notification_add,
-                        color: kwhite,
-                      )),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Keep track of your subscriptions efficiently',
+                          style: GoogleFonts.spaceGrotesk(
+                            textStyle: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),
-            Padding(
-              padding:  EdgeInsets.all(15.0.r),
+            CreditCard(),
+            SizedBox(
+              height: 50.h,
+            ),
+            Container(
+              decoration: const BoxDecoration(
+                color: Color(0xffD9D9D9),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  topRight: Radius.circular(25),
+                ),
+              ),
+              padding: EdgeInsets.all(15.0.r),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        'Upcoming Bills',
-                        style: GoogleFonts.poppins(
-                          textStyle:  TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w500),
-                        ),
+                  InkWell(
+                    onTap: () {
+                      changeScreen(context, Fullsubscription());
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 22, vertical: 22),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'My Subscription',
+                            style: GoogleFonts.spaceGrotesk(
+                              textStyle: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          Text(
+                            'See All',
+                            style: GoogleFonts.spaceGrotesk(
+                              textStyle: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                   SizedBox(
-                    height: 20.h,
+                    height: 10.h,
                   ),
                   Container(
                     padding: EdgeInsets.all(15.r),
@@ -87,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                               child: Text(
                                 'Create your first Subscription Bills',
                                 style: GoogleFonts.poppins(
-                                  textStyle:  TextStyle(
+                                  textStyle: TextStyle(
                                       color: Colors.white,
                                       fontSize: 16.sp,
                                       fontWeight: FontWeight.w600),
@@ -95,7 +166,7 @@ class _HomePageState extends State<HomePage> {
                                 maxLines: 2,
                               ),
                             ),
-                             SizedBox(
+                            SizedBox(
                               height: 15.h,
                             ),
                             Container(
@@ -103,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                               child: Text(
                                 'Create a recurring subscription payment for your bills, as well as manage your bills',
                                 style: GoogleFonts.poppins(
-                                  textStyle:  TextStyle(
+                                  textStyle: TextStyle(
                                       color: Colors.white,
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w400),
@@ -113,28 +184,27 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                     Container (
-                       height: 80.h,
-                       width: 80.w,
-                       child:Image.asset(
-                      'assets/hand.png',
-                      width: 75.w,
-                      height:85.w,
-                      fit: BoxFit.fill,
-                    ),),
+                        Container(
+                          height: 80.h,
+                          width: 80.w,
+                          child: Image.asset(
+                            'assets/hand.png',
+                            width: 75.w,
+                            height: 85.w,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                             SizedBox(
-                              height: 20.h
-                            ),
+                            SizedBox(height: 20.h),
                             Center(
                               child: Icon(
                                 Icons.arrow_forward_rounded,
                                 color: kwhite,
                               ),
                             ),
-                             SizedBox(
+                            SizedBox(
                               height: 20.h,
                             ),
                           ],
@@ -142,7 +212,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                   SizedBox(
+                  SizedBox(
                     height: 50.h,
                   ),
                   Container(
@@ -158,7 +228,7 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           'Payments history',
                           style: GoogleFonts.poppins(
-                            textStyle:  TextStyle(
+                            textStyle: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w500),
@@ -169,7 +239,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                   SizedBox(
+                  SizedBox(
                     height: 30.h,
                   ),
                   Row(
@@ -203,42 +273,45 @@ class _HomePageState extends State<HomePage> {
                             onTap: () => setState(() {
                               tab = index;
                             }),
-                            child:Row(children:[
-                              
-                               Container(
-                              margin: EdgeInsets.symmetric(horizontal: 10),
-                              width: 100,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 5),
-                              decoration: BoxDecoration(
-                                  color: index == tab
-                                      ? kwhite
-                                      : Color(0xffBACFFF).withOpacity(0),
-                                  border: Border.all(
+                            child: Row(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
+                                  width: 100,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 5),
+                                  decoration: BoxDecoration(
                                       color: index == tab
-                                          ? Colors.black
-                                          : Color(0xffBACFFF).withOpacity(.0),
-                                      width: .8),
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: Center(
-                                child: Text(
-                                  analysis[index],
-                                  style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(
-                                        color: index == tab
-                                            ? Colors.black
-                                            : Colors.grey.shade500,
-                                        fontSize: 14,
-                                        fontWeight: index == tab
-                                            ? FontWeight.w500
-                                            : FontWeight.w400),
+                                          ? kwhite
+                                          : Color(0xffBACFFF).withOpacity(0),
+                                      border: Border.all(
+                                          color: index == tab
+                                              ? Colors.black
+                                              : Color(0xffBACFFF)
+                                                  .withOpacity(.0),
+                                          width: .8),
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Center(
+                                    child: Text(
+                                      analysis[index],
+                                      style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                            color: index == tab
+                                                ? Colors.black
+                                                : Colors.grey.shade500,
+                                            fontSize: 14,
+                                            fontWeight: index == tab
+                                                ? FontWeight.w500
+                                                : FontWeight.w400),
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
+                                SizedBox(width: 5),
+                                Container(
+                                    height: 45, width: 1, color: Colors.grey),
+                              ],
                             ),
-                            SizedBox(width: 5),
-                            Container(height:45,width: 1, color:Colors.grey),
-                            ],),
                           );
                         })),
                   ),

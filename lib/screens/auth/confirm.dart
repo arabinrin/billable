@@ -118,16 +118,16 @@ class _ConfirmState extends State<Confirm> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.white,
-                                  boxShadow:const [
-                                    BoxShadow(
-                                      color: Color(0xffF5FCFF),
-                                      spreadRadius: 2,
-                                      blurRadius: 2,
-                                      offset: Offset(
-                                          0, 3), // changes position of shadow
-                                    ),
-                                  ],
-                                ),
+                                //   boxShadow:const [
+                                //     BoxShadow(
+                                //       color: Color(0xffF5FCFF),
+                                //       spreadRadius: 2,
+                                //       blurRadius: 2,
+                                //       offset: Offset(
+                                //           0, 3), // changes position of shadow
+                                //     ),
+                                //   ],
+                                 ),
                               )),
                               Positioned(
                                   child: Container(
@@ -136,15 +136,15 @@ class _ConfirmState extends State<Confirm> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: kprimarycolor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.4),
-                                      spreadRadius: 2,
-                                      blurRadius: 2,
-                                      offset: Offset(
-                                          0, 3), // changes position of shadow
-                                    ),
-                                  ],
+                                  // boxShadow: [
+                                  //   BoxShadow(
+                                  //     color: Colors.grey.withOpacity(0.4),
+                                  //     spreadRadius: 2,
+                                  //     blurRadius: 2,
+                                  //     offset: Offset(
+                                  //         0, 3), // changes position of shadow
+                                  //   ),
+                                  // ],
                                 ),
                               )),
                             ],
