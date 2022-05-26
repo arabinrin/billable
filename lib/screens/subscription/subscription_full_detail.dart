@@ -40,7 +40,7 @@ class SubscriptionFullDetail extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               height: height,
               width: width,
             ),
@@ -73,7 +73,7 @@ class SubscriptionFullDetail extends StatelessWidget {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                   ],

@@ -16,6 +16,7 @@ void main() async {
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider.value(value: UserToken()),
+    ChangeNotifierProvider(create: (context) => BudgetProvider())
   ], child: const MyApp()));
 }
 
