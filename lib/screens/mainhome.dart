@@ -1,6 +1,7 @@
 import 'dart:async';
+import 'package:billable/screens/budget_screen/budget_screen.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+
 
 import 'package:billable/screens/Home.dart';
 import 'package:billable/screens/subscription/subscrption.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class MainHome extends StatefulWidget {
   static const String route = '/user_home_screen';
@@ -25,7 +27,7 @@ class _MainHomeState extends State<MainHome>
     with
         SingleTickerProviderStateMixin,
         AutomaticKeepAliveClientMixin<MainHome> {
-  late PersistentTabController? tabController;
+ PersistentTabController? tabController;
   int selectedIndex = 0;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
@@ -110,7 +112,7 @@ class _MainHomeState extends State<MainHome>
   List<Widget> screens = [
     HomePage(),
    const Subscription(),
-    HomePage(),
+    const BudgetScreen(),
     HomePage(),
   ];
 

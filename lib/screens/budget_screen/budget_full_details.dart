@@ -1,36 +1,12 @@
-import 'package:billable/models/subscription.dart';
-import 'package:billable/models/transaction.dart';
-import 'package:billable/utils/constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 
-class SubscriptionFullDetail extends StatelessWidget {
-  SubscriptionFullDetail({
-    Key? key,
-    required this.subscriptionBillModelType,
-    required this.index,
-  }) : super(key: key);
-  final SubscriptionBillModel subscriptionBillModelType;
-  final int index;
+import '../../models/budget.dart';
 
-  int period(String type) {
-    if (type == 'Weekly') {
-      return 7;
-    }
-    if (type == 'Monthly') {
-      return 30;
-    }
-    if (type == 'Daily') {
-      return 1;
-    }
-    if (type == 'Yearly') {
-      return 366;
-    }
-    return 0;
-  }
+class BudgetFullDetials extends StatelessWidget {
+  final Budget budget;
 
-  final f = DateFormat('yyyy-MM-dd hh:mm');
+  const BudgetFullDetials({Key? key, required this.budget}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +23,11 @@ class SubscriptionFullDetail extends StatelessWidget {
             Positioned(
               top: 0,
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20),
                 alignment: Alignment.topCenter,
                 height: 280,
                 width: width,
-                color: Color(0xff0C0A40),
+                color: const Color(0xff0C0A40),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -65,7 +41,7 @@ class SubscriptionFullDetail extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      subscriptionBillModelType.name,
+                      budget.name,
                       style: GoogleFonts.poppins(
                         textStyle: const TextStyle(
                             color: Colors.white,
@@ -83,7 +59,7 @@ class SubscriptionFullDetail extends StatelessWidget {
             Positioned(
               top: 200,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 width: width,
                 height: height * .8,
                 decoration: const BoxDecoration(
@@ -107,7 +83,7 @@ class SubscriptionFullDetail extends StatelessWidget {
                               vertical: 5, horizontal: 5),
                           // height: 35,
                           decoration: BoxDecoration(
-                            color: Color(0xff0C0A40),
+                            color: const Color(0xff0C0A40),
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Center(
@@ -129,7 +105,7 @@ class SubscriptionFullDetail extends StatelessWidget {
                       height: 50,
                     ),
                     Text(
-                      '${(subscriptionBillModelType.amount / subscriptionBillModelType.interval).toStringAsFixed(2)}',
+                      '100,00',
                       style: GoogleFonts.poppins(
                         textStyle: const TextStyle(
                             color: Color(0xffAD271E),
@@ -149,11 +125,11 @@ class SubscriptionFullDetail extends StatelessWidget {
                             fontWeight: FontWeight.w600),
                       ),
                     ),
-                     const SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
-                      '${f.format(subscriptionBillModelType.start.add(Duration(days: period(subscriptionBillModelType.type) * (index + 1)))).split(' ')[0]}',
+                      '${budget.startdate}',
                       style: GoogleFonts.spaceGrotesk(
                         textStyle: const TextStyle(
                             color: Colors.black87,
@@ -173,11 +149,10 @@ class SubscriptionFullDetail extends StatelessWidget {
                             fontWeight: FontWeight.w600),
                       ),
                     ),
-
-                     const SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                      Text(
+                    Text(
                       'HVFQW2RUI3HUIAWHIUW8457',
                       style: GoogleFonts.poppins(
                         textStyle: const TextStyle(
@@ -191,33 +166,30 @@ class SubscriptionFullDetail extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 160,
-              right: width * .5 - 41,
-              child: Container(
-                height: 82,
-                width: 82,
-                // child: Image.asset(
-                //   subscriptionBillModelType.img,
-                //   height: 82,
-                //   width: 82,
-                // ),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage(subscriptionBillModelType.img),
+                top: 160,
+                right: width * .5 - 41,
+                child: Container(
+                  height: 82,
+                  width: 82,
+                  // child: Image.asset(
+                  //   subscriptionBillModelType.img,
+                  //   height: 82,
+                  //   width: 82,
+                  // ),
+                  child: const Icon(Icons.money_outlined),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: const Color.fromRGBO(229, 229, 229, 1),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(2, 2), // changes position of shadow
+                      ),
+                    ],
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(2, 2), // changes position of shadow
-                    ),
-                  ],
-                ),
-              ),
-            ),
+                ),),
           ],
         ),
       ),
