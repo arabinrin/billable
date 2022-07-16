@@ -1,3 +1,4 @@
+import 'package:billable/screens/subscription/add_subscription.dart';
 import 'package:billable/screens/subscription/full_subscription.dart';
 import 'package:billable/screens/subscription/subscrption.dart';
 import 'package:billable/utils/constants/color.dart';
@@ -58,10 +59,10 @@ class _HomePageState extends State<HomePage> {
                                 Border.all(color: Color(0xffBACFFF), width: 5),
                           ),
                           child: Center(
-                            child:  Icon(
-                                  Icons.notifications_on_outlined,
-                                  size: 20,
-                                ),
+                            child: Icon(
+                              Icons.notifications_on_outlined,
+                              size: 20,
+                            ),
                           ),
                         )
                       ],
@@ -139,77 +140,82 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Container(
-                    padding: EdgeInsets.all(15.r),
-                    height: 170.h,
-                    decoration: BoxDecoration(
-                      color: Color(0xff8349C6),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 200,
-                              child: Text(
-                                'Create your first Subscription Bills',
-                                style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16.sp,
-                                      fontWeight: FontWeight.w600),
+                  InkWell(
+                    onTap: () {
+                      changeScreen(context, AddSubscription());
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(15.r),
+                      height: 170.h,
+                      decoration: BoxDecoration(
+                        color: Color(0xff8349C6),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 200,
+                                child: Text(
+                                  'Create your first Subscription Bills',
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  maxLines: 2,
                                 ),
-                                maxLines: 2,
                               ),
-                            ),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            Container(
-                              width: 200.w,
-                              child: Text(
-                                'Create a recurring subscription payment for your bills, as well as manage your bills',
-                                style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w400),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              Container(
+                                width: 200.w,
+                                child: Text(
+                                  'Create a recurring subscription payment for your bills, as well as manage your bills',
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  maxLines: 4,
                                 ),
-                                maxLines: 4,
                               ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          height: 80.h,
-                          width: 80.w,
-                          child: Image.asset(
-                            'assets/hand.png',
-                            width: 75.w,
-                            height: 85.w,
-                            fit: BoxFit.fill,
+                            ],
                           ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(height: 20.h),
-                            Center(
-                              child: Icon(
-                                Icons.arrow_forward_rounded,
-                                color: kwhite,
+                          Container(
+                            height: 80.h,
+                            width: 80.w,
+                            child: Image.asset(
+                              'assets/hand.png',
+                              width: 75.w,
+                              height: 85.w,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(height: 20.h),
+                              Center(
+                                child: Icon(
+                                  Icons.arrow_forward_rounded,
+                                  color: kwhite,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                          ],
-                        ),
-                      ],
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(

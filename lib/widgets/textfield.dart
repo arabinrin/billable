@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 class RoundedInputField extends StatelessWidget {
   final String hintText;
   final Widget? icon;
+  final double? width;
   final IconData? icon2;
   void Function(String?)? onSaved;
   List<TextInputFormatter>? inputFormatters;
@@ -19,6 +20,8 @@ class RoundedInputField extends StatelessWidget {
       {required this.controller,
       required this.hintText,
       this.icon2,
+          this.width = .9,
+
       this.textInputType,
       this.icon,
       this.obscure = false,
